@@ -82,7 +82,7 @@ const RESOURCES = {
 "assets/fonts/Raleway-SemiBoldItalic.ttf": "b8ea2e82df9aeaf774c081dffb3b46e8",
 "assets/fonts/Raleway-Thin.ttf": "5faedfece17998f456bf5b32b100b597",
 "assets/fonts/Raleway-ThinItalic.ttf": "b4fdd9b19ccaa454c97e1ba2b1364815",
-"assets/NOTICES": "5a2b3fb1f78cd3e6d4b70c65e37fa839",
+"assets/NOTICES": "b23fe88d3fe4860e07556bcbdc54953a",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "howler.js": "2bba823e6b4d71ea019d81d384672823",
@@ -90,7 +90,7 @@ const RESOURCES = {
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "index.html": "ad04e7ea1bd343a60abc132ec2815295",
 "/": "ad04e7ea1bd343a60abc132ec2815295",
-"main.dart.js": "2c2b5e7f8a39dc2556e77239ce3b6081",
+"main.dart.js": "bdca78f110616bed6e5722b123585abc",
 "manifest.json": "40cc96e86f5b3a6a735669b2c2f89070"
 };
 
@@ -100,7 +100,7 @@ const CORE = [
   "/",
 "main.dart.js",
 "index.html",
-"assets/LICENSE",
+"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 
@@ -182,7 +182,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
     key = '/';
   }
-  // If the URL is not the the RESOURCE list, skip the cache.
+  // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
@@ -205,11 +205,11 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
-  if (event.message == 'skipWaiting') {
+  if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
 
-  if (event.message = 'downloadOffline') {
+  if (event.message === 'downloadOffline') {
     downloadOffline();
   }
 });
@@ -229,8 +229,8 @@ async function downloadOffline() {
   }
   for (var resourceKey in Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
-      resources.add(resourceKey);
+      resources.push(resourceKey);
     }
   }
-  return Cache.addAll(resources);
+  return contentCache.addAll(resources);
 }
