@@ -88,9 +88,9 @@ const RESOURCES = {
 "howler.js": "2bba823e6b4d71ea019d81d384672823",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "ad04e7ea1bd343a60abc132ec2815295",
-"/": "ad04e7ea1bd343a60abc132ec2815295",
-"main.dart.js": "bdca78f110616bed6e5722b123585abc",
+"index.html": "7047299a2a5eff26e16b8a6165832c6e",
+"/": "7047299a2a5eff26e16b8a6165832c6e",
+"main.dart.js": "aa9f900ad13ef47d3a311ed13e639a54",
 "manifest.json": "40cc96e86f5b3a6a735669b2c2f89070"
 };
 
