@@ -20,6 +20,7 @@
     <script type="application/javascript">
     var audio;
     function playAudio(path) {
+      if(audio != null) audio.stop();
       audio= new Howl({
         src: [path],
         html5:true
